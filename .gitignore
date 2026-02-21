@@ -1,0 +1,25 @@
+# Compiled files
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# IDE files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Docker volumes (don't need)
+postgres_data/
+
+# Environment files
+*.env
+application-local.yml
+application-dev.yml
+
+# Maven logs
+dependency-reduced-pom.xml
