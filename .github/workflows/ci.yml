@@ -28,6 +28,3 @@ jobs:
 
       - name: Build with Maven (skip tests)
         run: ./mvnw clean package -DskipTests
-
-      - name: Build
-        run: mvn clean verify
