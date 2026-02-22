@@ -20,12 +20,19 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+      - redis
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/expense_tracker
       DB_USERNAME: expense_user
       DB_PASSWORD: expense_user
       JWT_SECRET: your-super-secure-256-bit-secret-key-change-this
       SPRING_PROFILES_ACTIVE: prod
+
+  redis:
+    image: redis:7
+    container_name: expense-redis
+    ports:
+      - "6379:6379"
 
 volumes:
   postgres_data:

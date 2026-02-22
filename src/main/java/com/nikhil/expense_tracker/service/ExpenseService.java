@@ -6,6 +6,7 @@ import com.nikhil.expense_tracker.entity.Expense;
 import com.nikhil.expense_tracker.mapper.ExpenseMapper;
 import com.nikhil.expense_tracker.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,7 @@ public class ExpenseService {
         expenseRepository.delete(expense);
     }
 
+    @Cacheable(value = "allExpenses", key = "#userId")
     public Page<ExpenseResponse> getExpenses(UUID userId, Pageable pageable) {
 
         return expenseRepository
@@ -79,6 +81,7 @@ public class ExpenseService {
         return expenseRepository.findByUserIdAndExpenseDateBetween(userId, start, end);
     }
 
+    @Cacheable(value = "monthlyTotals", key = "#userId + '-' + #year + '-' + #month")
     public BigDecimal getMonthlyTotal(UUID userId, int year, int month) {
 
         LocalDate start = LocalDate.of(year, month, 1);

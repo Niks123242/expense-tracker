@@ -9,6 +9,10 @@ spring:
     show-sql: false
   flyway:
     enabled: true
+  data:
+    redis:
+      host: redis
+      port: 6379
 
 server:
   port: 8080
