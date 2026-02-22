@@ -25,5 +25,9 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
+
+      - name: Build with Maven (skip tests)
+        run: ./mvnw clean package -DskipTests
+
       - name: Build
         run: mvn clean verify
